@@ -23,6 +23,7 @@
     "rules": {
         "linebreak-style": [2, "windows"],
         "quotes": [2, "single"],
-        "semi": [2, "always"]
+        "semi": [2, "always"],
+        "react/display-name": 0
     }
 }
