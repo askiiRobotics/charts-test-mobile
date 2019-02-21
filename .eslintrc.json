@@ -1,0 +1,28 @@
+{
+    "env": {
+        "browser": true,
+        "es6": true,
+        "amd": true
+    },
+    "extends": [
+        "airbnb",
+        "react-app",
+        "eslint:recommended", 
+        "plugin:react/recommended"
+    ],
+    "parserOptions": {
+        "ecmaFeatures": {
+            "experimentalObjectRestSpread": true,
+            "jsx": true
+        },
+        "sourceType": "module"
+    },
+    "parser": "babel-eslint",
+    "root": true,
+    "plugins": ["react", "react-native"],
+    "rules": {
+        "linebreak-style": [2, "windows"],
+        "quotes": [2, "single"],
+        "semi": [2, "always"]
+    }
+}
