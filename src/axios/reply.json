@@ -1,0 +1,33 @@
+{
+    "data": {
+        "totalSavings": {
+            "edges": [
+                {
+                    "node": "QmFua0FjY291bnROb2RlOjEb",
+                    "date": "2018-12-01",
+                    "amount": 500
+                },
+                {
+                    "node": "QmFua0FjY291bnROb2RlOjEa",
+                    "date": "2018-11-01",
+                    "amount": 400
+                },
+                {
+                    "node": "QmFua0FjY291bnROb2RlOjEz",
+                    "date": "2018-10-01",
+                    "amount": 300
+                },
+                {
+                    "node": "QmFua0FjY291bnROb2RlOjEy",
+                    "date": "2018-09-01",
+                    "amount": 200
+                },
+                {
+                    "node": "QmFua0FjY291bnROb2RlOjEx",
+                    "date": "2018-08-01",
+                    "amount": 100
+                }
+            ]
+        }
+    } 
+}
