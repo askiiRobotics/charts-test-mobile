@@ -9,6 +9,7 @@
   "dependencies": {
     "axios": "^0.18.0",
     "axios-mock-adapter": "^1.16.0",
+    "lodash": "^4.17.11",
     "react": "16.6.3",
     "react-native": "0.58.5",
     "react-redux": "^6.0.1",
