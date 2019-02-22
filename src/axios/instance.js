@@ -6,9 +6,10 @@
  * ...
  * instance.defaults.headers.common['X-Device-Id'] = DeviceInfo.getUniqueID();
  */
+'use strict';
 import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
-import { config } from 'src/common';
+import { config } from '..';
 import answer from './reply';
 
 const instance = axios.create();
