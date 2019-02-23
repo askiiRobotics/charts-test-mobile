@@ -10,8 +10,8 @@ const defaultState = Object.freeze({
     totalSavings: [],
     sevingsRequestProcessing: false,
     sevingsRequestError: '',
-    fromDate: '',
-    toDate: '',
+    startDate: '',
+    endDate: '',
     version: CURRENT_STATE_VERSION
 });
 
