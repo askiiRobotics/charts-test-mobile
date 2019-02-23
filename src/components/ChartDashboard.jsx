@@ -14,14 +14,14 @@ const styles = StyleSheet.create({
     container: {
       flex: 1,
     },
-  });
+});
   
 interface IProps {
     savings: object;
     max: number;
     min: number;
-    start: string;
-    end: string;
+    start: string; // YYYY-MM-DD
+    end: string; // YYYY-MM-DD
 }
   
 const ChartDashboard = (props: IProps) => {
@@ -39,7 +39,7 @@ const ChartDashboard = (props: IProps) => {
           <Header
             centerComponent={{ text: 'TOTAL SAVINGS', style: { color: 'blue' } }}
           />
-          <ChartGrid max={max} min={min} start={start} end={end} />
+          <ChartGrid max={max} min={min} start={start} end={end} numberOfLevels={5} />
           <View style={styles.gridContainer}>
             {
               savings.edges.map(columnGenerator(columnLength)) 
