@@ -3,7 +3,7 @@
  */
 
 export * from './endDateSelector';
-export * from './sevingsRequestErrorSelector';
-export * from './sevingsRequestProcessingSelector';
+export * from './savingsRequestErrorSelector';
+export * from './savingsRequestProcessingSelector';
 export * from './startDateSelector';
 export * from './totalSavingsSelector';

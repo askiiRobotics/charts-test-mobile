@@ -8,8 +8,8 @@ import { CURRENT_STATE_VERSION, RequestStatus } from '../common';
 
 const defaultState = Object.freeze({
     totalSavings: [],
-    sevingsRequestProcessing: false,
-    sevingsRequestError: '',
+    savingsRequestProcessing: false,
+    savingsRequestError: '',
     startDate: '',
     endDate: '',
     version: CURRENT_STATE_VERSION
@@ -24,18 +24,18 @@ function updateTotalSavingsInfo(
   
     switch (status) {
       case RequestStatus.success:
-        newState.sevingsRequestError = '';
-        newState.sevingsRequestProcessing = false;
+        newState.savingsRequestError = '';
+        newState.savingsRequestProcessing = false;
         newState.totalSavings = data.totalSavings;
         break;
 
       case RequestStatus.fetching:  
-        newState.sevingsRequestProcessing = true;
+        newState.savingsRequestProcessing = true;
         break;
 
       case RequestStatus.error:
-        newState.sevingsRequestError = message;
-        newState.sevingsRequestProcessing = false;
+        newState.savingsRequestError = message;
+        newState.savingsRequestProcessing = false;
         break;
 
       default:
