@@ -7,3 +7,5 @@ export * from './savingsRequestErrorSelector';
 export * from './savingsRequestProcessingSelector';
 export * from './startDateSelector';
 export * from './totalSavingsSelector';
+export * from './maxSavingsLevelSelector';
+export * from './minSavingsLevelSelector';
