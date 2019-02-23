@@ -9,3 +9,5 @@ export const RequestStatus = Object.freeze({
     SUCCESS:  Symbol('success'),
     ERROR: Symbol('error')
 });
+
+export const CURRENT_STATE_VERSION = 1; // force persist to update current version os saved state in a case of critical update
