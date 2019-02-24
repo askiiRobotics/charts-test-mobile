@@ -42,7 +42,7 @@ const ChartDashboard = (props: IProps) => {
           <ChartGrid max={max} min={min} start={start} end={end} numberOfLevels={5} />
           <View style={styles.gridContainer}>
             {
-              savings.edges.map(columnGenerator(columnLength)) 
+              savings.edges.map(columnGenerator(columnLength, max)) 
                 // to avoid memory leeks we need to move every lambda function from render to an outside
             }
           </View>
@@ -50,12 +50,13 @@ const ChartDashboard = (props: IProps) => {
       );
 };
 
-const columnGenerator = (length) => (saving, i) => (
+const columnGenerator = (length, max) => (saving, i) => (
   <ChartColumn 
     key={saving.node} 
     {...saving} 
     index={i} 
     length={length}
+    max={max}
   />
 );
 
