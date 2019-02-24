@@ -68,6 +68,9 @@ const GridYLevel = (props: IGridYLevelProps) => {
 
 class ChartGrid extends React.Component<IProps, IState> {
     getMaxYLabel(max) {
+        if(max <= 0 || !max) {
+          return 10;
+        }
         const length = Math.log(max) * Math.LOG10E + 1 | 0; // we can have here float numbers
         const numDigit = Math.pow(10, length - 1);
         const firstDigit = parseInt(max.toString().substring(0, 1));
@@ -76,7 +79,7 @@ class ChartGrid extends React.Component<IProps, IState> {
 
     getYAxiosLabels() {
         const { max, numberOfLevels } = this.props;
-        if(max < 0) {
+        if(max < 0 || !max) {
             return [0];
         }
         const maxLabel = this.getMaxYLabel(max);
@@ -87,6 +90,9 @@ class ChartGrid extends React.Component<IProps, IState> {
 
     getXAxiosLabels() {
         const { start, end } = this.props;
+        if(!start || !end) {
+          return [];
+        }
         const range = moment.range(start, end);
 
         return Array.from(range.by('months')).map(m => m.format('MMM'));
