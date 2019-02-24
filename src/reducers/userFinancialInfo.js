@@ -7,9 +7,7 @@ import { cloneDeep } from 'lodash';
 import { CURRENT_STATE_VERSION, RequestStatus } from '../common';
 
 const defaultState = Object.freeze({
-    totalSavings: {
-      edges: [],
-    },
+    totalSavings: [],
     savingsRequestProcessing: true, // at the first open we need to load a data
     savingsRequestError: '',
     startDate: '',
@@ -28,7 +26,7 @@ function updateTotalSavingsInfo(
       case RequestStatus.SUCCESS:
         newState.savingsRequestError = '';
         newState.savingsRequestProcessing = false;
-        newState.totalSavings = data.totalSavings;
+        newState.totalSavings = data;
         break;
 
       case RequestStatus.FETCHING:  

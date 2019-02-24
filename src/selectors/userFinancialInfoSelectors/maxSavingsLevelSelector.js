@@ -10,7 +10,7 @@ import { totalSavingsSelector } from '.';
 export const maxSavingsLevelSelector = createSelector(
   [totalSavingsSelector],
   (totalSavings) => {
-    return totalSavings && totalSavings.edges ?
-      totalSavings.edges.reduce((accumulator, obj) => accumulator > obj.amount ? accumulator : obj.amount, 0) : 0;
+    return totalSavings ?
+      totalSavings.reduce((accumulator, obj) => accumulator > obj.amount ? accumulator : obj.amount, 0) : 0;
   },
 );
