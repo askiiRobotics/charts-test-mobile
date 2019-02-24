@@ -10,7 +10,7 @@ import { StatusBar, StyleSheet, View } from 'react-native';
 import { connect } from 'react-redux';
 import { config } from '..';
 import { rootSelector } from '../selectors';
-import { ChartsDashboard, LoadingView } from '.';
+import { ChartDashboard, LoadingView } from '.';
 
 const styles = StyleSheet.create({
   container: {
@@ -23,15 +23,16 @@ interface IProps {
 }
 
 const RootComponent = (props: IProps) => {
+    const { loading } = props;
+
     return (
       <View style={styles.container}>
         <StatusBar
-          backgroundColor={`#${config.MAIN_COLOR_HASH}`}
           barStyle='light-content'
-          networkActivityIndicatorVisible={props.loading}
+          networkActivityIndicatorVisible={loading}
         />
         {
-          props.loading ? <LoadingView /> : <ChartsDashboard />
+          loading ? <LoadingView /> : <ChartDashboard />
         }
       </View>
     );
