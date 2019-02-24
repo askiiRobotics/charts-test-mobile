@@ -6,9 +6,6 @@
 import _ from 'lodash';
 import { financialService } from '../services';
 
-const _monthGroup = Symbol('monthGroup');
-const _monthMap = Symbol('monthMap');
-
 export default class userFinancialInfo {
 
     // group daily amounts into a month amount
@@ -21,18 +18,20 @@ export default class userFinancialInfo {
             to,
         );
 
-        return _.chain(userSavings.data.totalSavings.edges)
-        .groupBy(this._monthGroup)
-        .toPairs()
-        .map(this._monthMap)
-        .value();
+        const result = _.chain(userSavings.data.totalSavings.edges)
+                        .groupBy(obj => obj.date.substring(0, 7))
+                        .toPairs()
+                        .map(this._monthMap)
+                        .value();
+
+        return result;
     }
 
-    [_monthGroup](obj) {
+    static _monthGroup (obj) {
         return obj.date.substring(0, 7); // sinse date format is 'YYYY-MM-DD' it is a fastest method
     }
 
-    [_monthMap](pair) {
+    static _monthMap(pair) {
         const month = pair[0];
         const value = pair[1].reduce((accumulator, obj) => accumulator + obj.amount, 0); 
         return {
