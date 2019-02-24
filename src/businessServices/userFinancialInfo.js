@@ -23,6 +23,8 @@ export default class userFinancialInfo {
                         .toPairs()
                         .map(this._monthMap)
                         .value();
+        
+        // TODO: add empty nodes for missed months in reply
 
         return result;
     }
