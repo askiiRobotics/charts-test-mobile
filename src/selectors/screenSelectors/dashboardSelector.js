@@ -4,7 +4,8 @@
 'use strict';
 
 import { createSelector } from 'reselect';
-import { 
+import {
+    totalSavingsSelector,
     maxSavingsLevelSelector,
     minSavingsLevelSelector,
     startDateSelector,
@@ -13,6 +14,7 @@ import {
 
 const dashboardSelector = createSelector(
   [
+    totalSavingsSelector,
     maxSavingsLevelSelector,
     minSavingsLevelSelector,
     startDateSelector,
