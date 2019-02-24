@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
     page: {
       flex: 1,
     },
-  });
+});
 
 const App = () => {
     return (
@@ -25,7 +25,7 @@ const App = () => {
           size='red'
         />
       </View>
-);
+    );
 };
 
 export default App;

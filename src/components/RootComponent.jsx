@@ -35,7 +35,7 @@ const RootComponent = (props: IProps) => {
         }
       </View>
     );
-  };
+};
 
 // tslint:disable-next-line:export-name
 export default (connect(rootSelector)(RootComponent));
