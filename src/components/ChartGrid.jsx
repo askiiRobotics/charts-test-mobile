@@ -8,9 +8,11 @@ import {
     StyleSheet,
     View,
     Text,
+    Dimensions,
 } from 'react-native';
 import Moment from 'moment';
 import { extendMoment } from 'moment-range';
+import { Divider } from 'react-native-elements';
 
 // TODO: to make moment localizable
 
@@ -18,20 +20,37 @@ const moment = extendMoment(Moment);
 
 const styles = StyleSheet.create({
     container: {
-      flex: 1,
       ...StyleSheet.absoluteFillObject,
+      top: 100,
+      right: 30,
     },
     xAxiosContainer: {
-
+      flexDirection: 'row',
+      justifyContent: 'space-around',
+      alignItems: 'flex-start',
     },
     levelContainer: {
-
+      flex: 1,
+      flexDirection: 'row',
     },
     labelXContainer: {
-
+      justifyContent: 'flex-end',
+      flexDirection: 'row',
+      marginRight: 15,
+      flex: 1,
+    },
+    levelLineContainer: {
+      flex: 5,
     },
     levelLine: {
-
+      backgroundColor: 'gray',
+      marginTop: 12,
+    },
+    xLabelContainer: {
+      flex: 1,
+    },
+    emptyXLabel: {
+      marginRight: 15,
     },
     label: {
 
@@ -61,12 +80,42 @@ const GridYLevel = (props: IGridYLevelProps) => {
             {label}
           </Text>
         </View>
-        <View style={styles.levelLine} />
+        <View style={styles.levelLineContainer}>
+          <Divider style={styles.levelLine} />
+        </View>
       </View>
     );
 };
 
+interface IState {
+  screen: string;
+}
+
 class ChartGrid extends React.Component<IProps, IState> {
+    constructor(props) {
+      super(props);
+      this.state = {
+        screen: Dimensions.get('window'),
+      };
+
+      
+      Dimensions.addEventListener('change', () => {
+        this.setState({
+          screen: Dimensions.get('window'),
+        });
+      });
+    }
+    
+    getOrientation(){
+      const { screen } = this.state;
+
+      if (screen.width > screen.height) {
+        return 'LANDSCAPE';
+      }else {
+        return 'PORTRAIT';
+      }
+    }
+
     getMaxYLabel(max) {
         if(max <= 0 || !max) {
           return 10;
@@ -85,7 +134,7 @@ class ChartGrid extends React.Component<IProps, IState> {
         const maxLabel = this.getMaxYLabel(max);
         const step = Math.floor(maxLabel / ( numberOfLevels - 1));
 
-        return new Array(numberOfLevels).map((_val, i) => i * step);
+        return Array.apply(null, Array(numberOfLevels)).map((_val, i) => i * step);
     }
 
     getXAxiosLabels() {
@@ -113,24 +162,39 @@ class ChartGrid extends React.Component<IProps, IState> {
 
     _renderGridXStep(label, i) {
         return (
-          <Text key={`${label}${i}`} style={styles.label}>
-            {label}
-          </Text>
+          <View style={styles.xLabelContainer}>
+            <Text key={`${label}${i}`} style={styles.label}>
+              {label}
+            </Text>
+          </View>
         );
     }
 
     render() {
-        const { numberOfLevels } = this.props;
         const xLabels = this.getXAxiosLabels();
         const yLabels = this.getYAxiosLabels();
         const yLabelsRightPosition = yLabels.length - 1;
 
+        const xAxiosPositioningStyle = this.getOrientation() === 'LANDSCAPE' ? {} : {
+          marginTop: -70,
+        };
+
         return (
           <View style={styles.container}>
             {
-                new Array(numberOfLevels).map(this.gridYLevelHandler(yLabels, yLabelsRightPosition))
+                yLabels.map(this.gridYLevelHandler(yLabels, yLabelsRightPosition))
             }
-            <View style={[styles.levelContainer, styles.xAxiosContainer]}>
+            <View style={[
+              styles.levelContainer, 
+              styles.xAxiosContainer,
+              xAxiosPositioningStyle,
+              ]}
+            >
+              <View style={[
+                styles.xLabelContainer, 
+                styles.emptyXLabel,
+                ]}
+              />
               {
                   xLabels.map(this._renderGridXStep)
               }
