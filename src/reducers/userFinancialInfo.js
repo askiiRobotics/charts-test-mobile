@@ -10,7 +10,7 @@ const defaultState = Object.freeze({
     totalSavings: {
       edges: [],
     },
-    savingsRequestProcessing: false,
+    savingsRequestProcessing: true, // at the first open we need to load a data
     savingsRequestError: '',
     startDate: '',
     endDate: '',
