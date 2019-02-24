@@ -17,7 +17,7 @@ import {
     createStore,
   } from 'redux';
 import { array, promise } from '.';
-import rootReducer from '../reducers';
+import { reducers } from '../reducers';
 
 const isDebuggingInChrome = __DEV__ && !!(window && window.navigator && window.navigator.userAgent);
 
@@ -41,7 +41,7 @@ const persistConfig = {
  stateReconciler: autoMergeLevel2
 };
 
-const pReducer = persistReducer(persistConfig, rootReducer);
+const pReducer = persistReducer(persistConfig, reducers);
 
 export const store = createApplicationStore(pReducer);
 export const persistor = persistStore(store);

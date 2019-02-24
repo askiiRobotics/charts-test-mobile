@@ -7,7 +7,9 @@ import { cloneDeep } from 'lodash';
 import { CURRENT_STATE_VERSION, RequestStatus } from '../common';
 
 const defaultState = Object.freeze({
-    totalSavings: [],
+    totalSavings: {
+      edges: [],
+    },
     savingsRequestProcessing: false,
     savingsRequestError: '',
     startDate: '',
@@ -44,7 +46,7 @@ function updateTotalSavingsInfo(
     return newState;
   }
 
-export default function userFinancialInfo(
+export function userFinancialInfo(
     state = defaultState,
     action,
   ) {
