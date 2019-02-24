@@ -8,9 +8,10 @@
 import React from 'react';
 import { StatusBar, StyleSheet, View } from 'react-native';
 import { connect } from 'react-redux';
-import { config } from '..';
+import { bindActionCreators } from 'redux';
 import { rootSelector } from '../selectors';
 import { ChartDashboard, LoadingView } from '.';
+import { getUserTotalSavings } from '../actions';
 
 const styles = StyleSheet.create({
   container: {
@@ -20,23 +21,44 @@ const styles = StyleSheet.create({
 
 interface IProps {
   loading?: boolean;
+  getUserTotalSavings(from: string, to: string): void;
 }
 
-const RootComponent = (props: IProps) => {
-    const { loading } = props;
+class RootComponent extends React.Component<IProps, IState> {
+    constructor(props: IProps, context?: any) {
+      super(props, context);
 
-    return (
-      <View style={styles.container}>
-        <StatusBar
-          barStyle='light-content'
-          networkActivityIndicatorVisible={loading}
-        />
-        {
-          loading ? <LoadingView /> : <ChartDashboard />
-        }
-      </View>
-    );
+      this.loadData(props);
+    }
+  
+    loadData(props: IProps) {
+      props.getUserTotalSavings('2018-08-01', '2018-12-01');
+    }
+
+    render() {
+      const { loading } = this.props;
+
+      return (
+        <View style={styles.container}>
+          <StatusBar
+            barStyle='light-content'
+            networkActivityIndicatorVisible={loading}
+          />
+          {
+            loading ? <LoadingView /> : <ChartDashboard />
+          }
+        </View>
+      );
+  }
+}
+
+
+const mapDispatchToProps = (dispatch: any) => {
+  return bindActionCreators({
+    getUserTotalSavings,
+  },
+                            dispatch);
 };
 
 // tslint:disable-next-line:export-name
-export default (connect(rootSelector)(RootComponent));
+export default (connect(rootSelector, mapDispatchToProps)(RootComponent));
