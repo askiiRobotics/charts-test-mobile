@@ -9,7 +9,7 @@
 'use strict';
 import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
-import { config } from '..';
+import config from '../../appconfig';
 import answer from './reply';
 
 const instance = axios.create();
@@ -17,7 +17,7 @@ instance.defaults.baseURL = config.SERVER_BASE_URL;
 instance.defaults.headers.common['Content-Type'] = 'application/json; charset=utf-8';
 instance.defaults.headers.common.Accept = 'application/json, text/plain, */*';
 
-var mock = new MockAdapter(instance);
+const mock = new MockAdapter(instance);
 mock.onGet('/get-financial-info').reply(200, answer);
 
 export { instance as default };
