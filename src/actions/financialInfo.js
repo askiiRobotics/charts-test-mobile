@@ -18,7 +18,7 @@ export function getUserTotalSavings() {
     return performApiCall(
       dispatch,
       FINANCIAL_INFO.GET_USER_TOTAL_SAVINGS,
-      userFinancialInfo.getUserTotalSavings(
+      () => userFinancialInfo.getUserTotalSavings(
         from,
         to,
                             )

@@ -21,10 +21,11 @@ export default class userFinancialInfo {
             to,
         );
 
-        _.chain(userSavings.data.totalSavings.edges)
+        return _.chain(userSavings.data.totalSavings.edges)
         .groupBy(this._monthGroup)
         .toPairs()
-        .map(this._monthMap);
+        .map(this._monthMap)
+        .value();
     }
 
     [_monthGroup](obj) {
