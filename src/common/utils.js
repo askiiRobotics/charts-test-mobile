@@ -11,14 +11,14 @@ import { RequestStatus } from '.';
 export async function performApiCall(dispatch, actionType, apiCall, successCallback) {
     let action: any = {
       type: actionType,
-      status: RequestStatus.fetching,
+      status: RequestStatus.FETCHING,
     };
     dispatch(action);
     try {
       const response = await apiCall();
       action = {
         type: actionType,
-        status: RequestStatus.success,
+        status: RequestStatus.SUCCESS,
         lastUpdated: Date.now(),
         ...response,
       };
@@ -32,7 +32,7 @@ export async function performApiCall(dispatch, actionType, apiCall, successCallb
   
       action = {
         type: actionType,
-        status: RequestStatus.error,
+        status: RequestStatus.ERROR,
         statusCode: error.response ? error.response.status : 'unknown',
         message: error.response && error.config ?
         `Network error for ${error.config.method ? error.config.method.toUpperCase() : 'unknown method'} ${

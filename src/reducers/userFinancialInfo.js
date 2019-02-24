@@ -25,17 +25,17 @@ function updateTotalSavingsInfo(
     const { data, status, message } = action;
   
     switch (status) {
-      case RequestStatus.success:
+      case RequestStatus.SUCCESS:
         newState.savingsRequestError = '';
         newState.savingsRequestProcessing = false;
         newState.totalSavings = data.totalSavings;
         break;
 
-      case RequestStatus.fetching:  
+      case RequestStatus.FETCHING:  
         newState.savingsRequestProcessing = true;
         break;
 
-      case RequestStatus.error:
+      case RequestStatus.ERROR:
         newState.savingsRequestError = message;
         newState.savingsRequestProcessing = false;
         break;
@@ -61,5 +61,5 @@ export function userFinancialInfo(
 }
 
 export const FINANCIAL_INFO = Object.freeze({
-    GET_USER_TOTAL_SAVINGS:   Symbol('GET_USER_TOTAL_SAVINGS'),
+    GET_USER_TOTAL_SAVINGS:   'GET_USER_TOTAL_SAVINGS',
 });
