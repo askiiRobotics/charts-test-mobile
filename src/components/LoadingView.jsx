@@ -7,6 +7,7 @@ import React from 'react';
 import {
     View,
     ActivityIndicator,
+    StyleSheet,
 } from 'react-native';
 
 // TODO: add logo and media backgroung for better impression
@@ -14,18 +15,23 @@ import {
 const styles = StyleSheet.create({
     page: {
       flex: 1,
+      justifyContent: 'center',
     },
 });
 
-const App = () => {
+const LoadingView = () => {
     return (
       <View style={styles.page}>
-        <ActivityIndicator
-          color='blue'
-          size='red'
-        />
+        {
+    /** TODO: add
+     *         <ActivityIndicator
+     *          color='blue'
+     *          size='red'
+     *        />
+     */
+    }
       </View>
     );
 };
 
-export default App;
+export default LoadingView;
