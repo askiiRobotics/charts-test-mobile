@@ -7,12 +7,22 @@ import React from 'react';
 import { StyleSheet, View } from 'react-native';
 import { Header } from 'react-native-elements';
 import { connect } from 'react-redux';
+import { reverse } from 'lodash';
 import { ChartColumn, ChartGrid } from '.';
 import { dashboardSelector } from '../selectors';
 
 const styles = StyleSheet.create({
     container: {
       flex: 1,
+    },
+    columnContainer: {
+      ...StyleSheet.absoluteFillObject,
+      top: 150,
+      right: 30,
+      left: 60,
+      bottom: 115,
+      flexDirection: 'row',
+      justifyContent: 'space-between',
     },
 });
   
@@ -33,7 +43,7 @@ const ChartDashboard = (props: IProps) => {
           savings,
       } = props;
       const columnLength = savings ? savings.length : 0;
-
+      
       return (
         <View style={styles.container}>
           <Header
@@ -48,10 +58,10 @@ const ChartDashboard = (props: IProps) => {
             }}
           />
           <ChartGrid max={max} min={min} start={start} end={end} numberOfLevels={5} />
-          <View style={styles.gridContainer}>
+          <View style={styles.columnContainer}>
             {
               savings ? 
-                savings.map(columnGenerator(columnLength, max)) 
+                reverse(savings).map(columnGenerator(columnLength, max)) 
                 : <View />
                 // to avoid memory leeks we need to move every lambda function from render to an outside
             }

@@ -10,6 +10,8 @@ import { LinearColorInterpolator, Color } from '../common';
 const styles = StyleSheet.create({
     columm: {
         flexDirection: 'column',
+        flex: 1,
+        marginHorizontal: 5,
     },
     emptyPart: {
     },
@@ -34,13 +36,13 @@ const ChartColumn = (props: IProps) => {
         rightColumnColor, 
         (100 / (length - 1)) * index,
       );
-  const emptyValue = Math.floor((amount / max) * 100);
-  const columnValue = 100 - emptyValue;
+  const columnValue = Math.floor((amount / max) * 100);
+  const emptyValue = 100 - columnValue;
 
   return (
     <View style={[styles.columm]}>
       <View style={[styles.emptyPart, { flex: emptyValue }]} />
-      <View style={[styles.filledPard, { flex: columnValue, backgroundColor: positionColor }]} />
+      <View style={[styles.filledPard, { flex: columnValue, backgroundColor: positionColor.asRgbCss() }]} />
     </View>
   );
 };
