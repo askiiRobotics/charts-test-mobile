@@ -4,7 +4,7 @@
 'use strict';
 
 import React from 'react';
-import { View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { LinearColorInterpolator, Color } from '../common';
 
 const styles = StyleSheet.create({
