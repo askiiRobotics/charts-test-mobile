@@ -18,6 +18,6 @@ instance.defaults.headers.common['Content-Type'] = 'application/json; charset=ut
 instance.defaults.headers.common.Accept = 'application/json, text/plain, */*';
 
 const mock = new MockAdapter(instance);
-mock.onGet('/get-financial-info').reply(200, answer);
+mock.onPost('/get-total-savings').reply(200, answer);
 
 export { instance as default };
