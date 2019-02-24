@@ -10,8 +10,8 @@ const defaultState = Object.freeze({
     totalSavings: [],
     savingsRequestProcessing: true, // at the first open we need to load a data
     savingsRequestError: '',
-    startDate: '',
-    endDate: '',
+    startDate: '2018-08-01',
+    endDate: '2018-12-01',
     version: CURRENT_STATE_VERSION
 });
 

@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
 
 interface IProps {
   loading?: boolean;
-  getUserTotalSavings(from: string, to: string): void;
+  getUserTotalSavings(): void;
 }
 
 class RootComponent extends React.Component<IProps, IState> {
@@ -32,7 +32,7 @@ class RootComponent extends React.Component<IProps, IState> {
     }
   
     loadData(props: IProps) {
-      props.getUserTotalSavings('2018-08-01', '2018-12-01');
+      props.getUserTotalSavings();
     }
 
     render() {

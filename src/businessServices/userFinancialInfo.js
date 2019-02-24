@@ -36,7 +36,7 @@ export default class userFinancialInfo {
         const value = pair[1].reduce((accumulator, obj) => accumulator + obj.amount, 0); 
         return {
             month,
-            value,
+            amount: value,
         };
     }
 }
