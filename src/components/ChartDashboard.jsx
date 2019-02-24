@@ -32,7 +32,7 @@ const ChartDashboard = (props: IProps) => {
           end,
           savings,
       } = props;
-      const columnLength = savings ? savings.edges.length : 0;
+      const columnLength = savings ? savings.length : 0;
 
       return (
         <View style={styles.container}>
@@ -51,7 +51,7 @@ const ChartDashboard = (props: IProps) => {
           <View style={styles.gridContainer}>
             {
               savings ? 
-                savings.edges.map(columnGenerator(columnLength, max)) 
+                savings.map(columnGenerator(columnLength, max)) 
                 : <View />
                 // to avoid memory leeks we need to move every lambda function from render to an outside
             }
