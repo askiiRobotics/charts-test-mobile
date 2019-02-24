@@ -11,7 +11,7 @@ import {
     endDateSelector,
  } from '..';
 
-const rootSelector = createSelector(
+const dashboardSelector = createSelector(
   [
     maxSavingsLevelSelector,
     minSavingsLevelSelector,
@@ -35,4 +35,4 @@ const rootSelector = createSelector(
   },
 );
 
-export default rootSelector;
+export default dashboardSelector;
