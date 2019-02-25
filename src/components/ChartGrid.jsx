@@ -13,6 +13,7 @@ import {
 import Moment from 'moment';
 import { extendMoment } from 'moment-range';
 import { Divider } from 'react-native-elements';
+import { getOrientation } from '../common';
 
 // TODO: to make moment localizable
 
@@ -105,34 +106,13 @@ class ChartGrid extends React.Component<IProps, IState> {
         });
       });
     }
-    
-    getOrientation(){
-      const { screen } = this.state;
-
-      if (screen.width > screen.height) {
-        return 'LANDSCAPE';
-      }else {
-        return 'PORTRAIT';
-      }
-    }
-
-    getMaxYLabel(max) {
-        if(max <= 0 || !max) {
-          return 10;
-        }
-        const length = Math.log(max) * Math.LOG10E + 1 | 0; // we can have here float numbers
-        const numDigit = Math.pow(10, length - 1);
-        const firstDigit = parseInt(max.toString().substring(0, 1));
-        return (firstDigit + 1) *  numDigit;
-    }
 
     getYAxiosLabels() {
         const { max, numberOfLevels } = this.props;
         if(max < 0 || !max) {
             return [0];
         }
-        const maxLabel = this.getMaxYLabel(max);
-        const step = Math.floor(maxLabel / ( numberOfLevels - 1));
+        const step = Math.floor(max / ( numberOfLevels - 1));
 
         return Array.apply(null, Array(numberOfLevels)).map((_val, i) => i * step);
     }
@@ -174,8 +154,9 @@ class ChartGrid extends React.Component<IProps, IState> {
         const xLabels = this.getXAxiosLabels();
         const yLabels = this.getYAxiosLabels();
         const yLabelsRightPosition = yLabels.length - 1;
+        const { screen } = this.state;
 
-        const xAxiosPositioningStyle = this.getOrientation() === 'LANDSCAPE' ? {} : {
+        const xAxiosPositioningStyle = getOrientation(screen) === 'LANDSCAPE' ? {} : {
           marginTop: -70,
         };
 

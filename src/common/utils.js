@@ -7,7 +7,6 @@ import { isFunction } from 'lodash';
 import { RequestStatus } from '.';
 
 // helper function to dispatch 3 types of action: fetching, error, success of API call
-// eslint-disable-next-line import/prefer-default-export
 export async function performApiCall(dispatch, actionType, apiCall, successCallback) {
     let action: any = {
       type: actionType,
@@ -43,3 +42,11 @@ export async function performApiCall(dispatch, actionType, apiCall, successCallb
   
     return dispatch(action);
   }
+
+export const getOrientation = (screen) => {
+  if (screen.width > screen.height) {
+    return 'LANDSCAPE';
+  }else {
+    return 'PORTRAIT';
+  }
+};
